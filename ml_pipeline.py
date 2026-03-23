@@ -112,12 +112,14 @@ plt.savefig('random_forest_roc.png')
 
 # Feature Importances
 rf_importances = pd.Series(rf.feature_importances_, index=X.columns).sort_values(ascending=False)
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 10))
 sns.barplot(x=rf_importances.values, y=rf_importances.index, hue=rf_importances.index, palette='viridis', legend=False)
 for i, v in enumerate(rf_importances.values):
-    plt.text(v + 0.01, i, f"{v:.4f}", color='black', va='center')
+    plt.text(v + 0.005, i, f"{v:.4f}", color='black', va='center')
 plt.title("Random Forest Feature Importances")
 plt.xlabel("Importance Score")
+plt.ylabel("")
+plt.xlim(0, rf_importances.max() * 1.1)
 plt.tight_layout()
 plt.savefig('random_forest_importances.png')
 
